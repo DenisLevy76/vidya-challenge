@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { App } from '../App'
 import { Header } from '../components/header'
+import { Orders } from './orders'
 
 export const routes = createBrowserRouter([
   {
@@ -22,7 +23,7 @@ export const routes = createBrowserRouter([
   },
   {
     path: '/orders',
-    element: <Header />,
+    element: <Orders />,
   },
   {
     path: '/products',

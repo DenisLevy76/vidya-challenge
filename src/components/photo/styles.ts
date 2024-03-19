@@ -1,8 +1,10 @@
 import styled from 'styled-components'
 
-export const PhotoWrapper = styled.div<{
+export interface PhotoWrapperProps {
   variant?: 'primary' | 'secondary'
-}>`
+}
+
+export const PhotoWrapper = styled.div<PhotoWrapperProps>`
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 0.5rem;

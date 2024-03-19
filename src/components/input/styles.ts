@@ -16,6 +16,7 @@ export const InputWrapper = styled.label`
     width: 100%;
     font-size: 1rem;
     outline: none;
+    background-color: transparent;
   }
 
   &:focus-within {
