@@ -11,4 +11,4 @@ export const theme = {
     background: '#F6F8FC',
     grey50: '#F7F9FC',
   },
-}
+} as const
