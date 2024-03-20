@@ -1,4 +1,4 @@
-import { Button } from '../../components/button'
+import { CreateOrderDialog } from '../../components/create-order-dialog'
 import { Header } from '../../components/header'
 import { IconButton } from '../../components/icon-button'
 import { SearchIcon } from '../../components/icons/search'
@@ -24,7 +24,7 @@ export const Orders: React.FC = () => {
               }
             />
           </form>
-          <Button>+ Novo Pedido</Button>
+          <CreateOrderDialog />
         </Wrapper>
 
         <OrdersList>
