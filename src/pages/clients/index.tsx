@@ -1,5 +1,5 @@
-import { Button } from '../../components/button'
 import { ClientCard } from '../../components/client-card'
+import { CreateClientDialog } from '../../components/create-client-dialog'
 import { Header } from '../../components/header'
 import { IconButton } from '../../components/icon-button'
 import { SearchIcon } from '../../components/icons/search'
@@ -24,7 +24,7 @@ export const Clients: React.FC = () => {
               }
             />
           </form>
-          <Button>+ Novo Cliente</Button>
+          <CreateClientDialog />
         </Wrapper>
 
         <ClientsList>
