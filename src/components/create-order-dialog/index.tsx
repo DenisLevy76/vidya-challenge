@@ -13,6 +13,7 @@ import { DialogBody, DialogFooterContent } from './styles'
 import { Input } from '../input'
 import { SearchIcon } from '../icons/search'
 import { formatToCurrency } from '../../utils/convert-to-currency'
+import { ProductList } from '../product-list'
 
 export const CreateOrderDialog: React.FC = () => (
   <Dialog.Root>
@@ -50,6 +51,12 @@ export const CreateOrderDialog: React.FC = () => (
                 }
               />
             </form>
+
+            <ul>
+              <li>
+                <ProductList />
+              </li>
+            </ul>
           </DialogBody>
           <DialogFooter>
             <DialogFooterContent>

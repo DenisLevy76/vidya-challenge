@@ -19,6 +19,14 @@ export const DialogBody = styled.body`
       font-size: 0.875rem;
     }
   }
+
+  ul {
+    margin-top: 1.375rem;
+    display: flex;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.1875rem;
+  }
 `
 
 export const DialogFooterContent = styled.div`
