@@ -1,0 +1,48 @@
+{
+  "clients": [
+    {
+      "name": "Cliente 1",
+      "CNPJ": "12345678901234",
+      "phone": "1234567890",
+      "CEP": "12345-678",
+      "state": "Estado 1",
+      "city": "Cidade 1",
+      "neighborhood": "Bairro 1",
+      "address": "Endereço 1",
+      "number": 123
+    },
+    {
+      "name": "Cliente 2",
+      "CNPJ": "56789012345678",
+      "phone": "0987654321",
+      "CEP": "54321-876",
+      "state": "Estado 2",
+      "city": "Cidade 2",
+      "neighborhood": "Bairro 2",
+      "address": "Endereço 2",
+      "number": 456
+    },
+    {
+      "name": "Cliente 3",
+      "CNPJ": "90123456789012",
+      "phone": "1357924680",
+      "CEP": "98765-432",
+      "state": "Estado 3",
+      "city": "Cidade 3",
+      "neighborhood": "Bairro 3",
+      "address": "Endereço 3",
+      "number": 789
+    },
+    {
+      "name": "Cliente 4",
+      "CNPJ": "34567890123456",
+      "phone": "2468013579",
+      "CEP": "87654-321",
+      "state": "Estado 4",
+      "city": "Cidade 4",
+      "neighborhood": "Bairro 4",
+      "address": "Endereço 4",
+      "number": 987
+    }
+  ]
+}

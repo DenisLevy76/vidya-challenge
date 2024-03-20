@@ -14,6 +14,7 @@ import { Input } from '../input'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
+import { IClient } from '../../@types/client'
 
 const schema = yup.object({
   name: yup.string().required('Este campo é obrigatório.'),
@@ -30,29 +31,17 @@ const schema = yup.object({
     .required('Este campo é obrigatório.'),
 })
 
-export interface FormInput {
-  name: string
-  CNPJ: string
-  phone: string
-  CEP: string
-  state: string
-  city: string
-  neighborhood: string
-  address: string
-  number: number
-}
-
 export const CreateClientDialog: React.FC = () => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<FormInput>({
+  } = useForm<IClient>({
     resolver: yupResolver(schema),
   })
 
-  const onSubmit = (data: FormInput) => {
+  const onSubmit = (data: IClient) => {
     console.log(data)
     reset()
   }
