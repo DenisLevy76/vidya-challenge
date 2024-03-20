@@ -7,6 +7,9 @@ export const CreateClientDialogBody = styled.main`
     display: grid;
     gap: 1rem;
 
+    max-height: 60vh;
+    overflow: auto;
+
     grid-template-columns: repeat(1, 1fr);
 
     @media (min-width: 500px) {
