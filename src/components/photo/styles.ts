@@ -7,7 +7,7 @@ export interface PhotoWrapperProps {
 export const PhotoWrapper = styled.div<PhotoWrapperProps>`
   width: 2.5rem;
   height: 2.5rem;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
 
   display: flex;
   align-items: center;
