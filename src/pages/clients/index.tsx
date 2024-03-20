@@ -31,18 +31,16 @@ export const Clients: React.FC = () => {
 
       <Container>
         <Wrapper>
-          <form>
-            <Input
-              placeholder='Pesquisar'
-              onChange={(event) => setFilter(event.target.value)}
-              value={filter}
-              suffix={
-                <IconButton aria-label='Pesquisar'>
-                  <SearchIcon />
-                </IconButton>
-              }
-            />
-          </form>
+          <Input
+            placeholder='Pesquisar'
+            onChange={(event) => setFilter(event.target.value)}
+            value={filter}
+            suffix={
+              <IconButton aria-label='Pesquisar'>
+                <SearchIcon />
+              </IconButton>
+            }
+          />
           <CreateClientDialog />
         </Wrapper>
 
