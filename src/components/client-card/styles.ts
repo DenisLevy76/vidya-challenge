@@ -13,6 +13,7 @@ export const ClientsCardWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
 
   & .about {
+    text-align: left;
     & > h3 {
       color: ${({ theme }) => theme.colors.title};
       font-weight: bold;

@@ -1,17 +1,21 @@
+import { ClientAboutDialog } from '../client-about-dialog'
 import { Photo } from '../photo'
 import { ClientsCardWrapper } from './styles'
+import { ClientCardProps } from './types'
 
-export const ClientCard: React.FC = () => {
+export const ClientCard: React.FC<ClientCardProps> = ({ CNPJ, name }) => {
   return (
-    <ClientsCardWrapper>
-      <Photo
-        name='Império dos Sonhos'
-        variant='primary'
-      />
-      <p className='about'>
-        <h3>Energia Verde</h3>
-        <span>00.000.000/0000-00</span>
-      </p>
-    </ClientsCardWrapper>
+    <ClientAboutDialog CNPJ={CNPJ}>
+      <ClientsCardWrapper>
+        <Photo
+          name={name}
+          variant='primary'
+        />
+        <p className='about'>
+          <h3>{name}</h3>
+          <span>{CNPJ}</span>
+        </p>
+      </ClientsCardWrapper>
+    </ClientAboutDialog>
   )
 }

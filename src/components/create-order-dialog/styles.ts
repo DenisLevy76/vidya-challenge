@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const DialogBody = styled.body`
+export const DialogBody = styled.main`
   padding: 1.125rem 1.375rem;
 
   form {
