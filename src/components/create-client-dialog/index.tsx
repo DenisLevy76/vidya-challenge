@@ -15,6 +15,9 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import { IClient } from '../../@types/client'
+import { useDispatch } from 'react-redux'
+import { createClient } from '../../states/clientSlice'
+import { useState } from 'react'
 
 const schema = yup.object({
   name: yup.string().required('Este campo é obrigatório.'),
@@ -41,13 +44,21 @@ export const CreateClientDialog: React.FC = () => {
     resolver: yupResolver(schema),
   })
 
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+
+  const dispatch = useDispatch()
+
   const onSubmit = (data: IClient) => {
-    console.log(data)
+    dispatch(createClient(data))
+    setIsOpen(false)
     reset()
   }
 
   return (
-    <Dialog.Root>
+    <Dialog.Root
+      onOpenChange={setIsOpen}
+      open={isOpen}
+    >
       <Dialog.Trigger asChild>
         <Button>+ Novo Cliente</Button>
       </Dialog.Trigger>

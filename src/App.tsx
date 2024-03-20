@@ -1,25 +1,26 @@
-import styled from 'styled-components'
-import { Header } from './components/header'
-import { Button } from './components/button'
-import { OrderCard } from './components/order-card'
-
-const Container = styled.div`
-  color: ${(props) => props.theme.colors.primary};
-`
+import { RouterProvider } from 'react-router-dom'
+import { routes } from './pages/routes'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from './states/store'
+import { useEffect } from 'react'
+import { initializeState } from './states/clientSlice'
 
 export const App: React.FC = () => {
-  return (
-    <>
-      <Container>
-        <Header />
-        <h1>teste</h1>
+  const clients = useSelector((state: RootState) => state.clients.clients)
+  const dispatch = useDispatch()
 
-        <Button>
-          <span>+</span> Salvar
-        </Button>
+  useEffect(() => {
+    const persistentState = localStorage.getItem('clients')
 
-        <OrderCard />
-      </Container>
-    </>
-  )
+    if (persistentState && persistentState?.length > 2) {
+      const data = JSON.parse(persistentState)
+      dispatch(initializeState(data))
+    }
+  }, [dispatch])
+
+  useEffect(() => {
+    localStorage.setItem('clients', JSON.stringify(clients))
+  }, [clients])
+
+  return <RouterProvider router={routes} />
 }

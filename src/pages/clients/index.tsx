@@ -7,7 +7,12 @@ import { Input } from '../../components/input'
 import { Container } from '../../styles/container'
 import { ClientsList, Wrapper } from './styles'
 
+import { useSelector } from 'react-redux'
+import { RootState } from '../../states/store'
+
 export const Clients: React.FC = () => {
+  const clients = useSelector((state: RootState) => state.clients.clients)
+
   return (
     <main>
       <Header />
@@ -28,18 +33,14 @@ export const Clients: React.FC = () => {
         </Wrapper>
 
         <ClientsList>
-          <li>
-            <ClientCard />
-          </li>
-          <li>
-            <ClientCard />
-          </li>
-          <li>
-            <ClientCard />
-          </li>
-          <li>
-            <ClientCard />
-          </li>
+          {clients?.map((client) => (
+            <li key={client.CNPJ}>
+              <ClientCard
+                name={client.name}
+                CNPJ={client.CNPJ}
+              />
+            </li>
+          ))}
         </ClientsList>
       </Container>
     </main>
