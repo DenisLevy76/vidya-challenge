@@ -16,7 +16,7 @@ export const DialogOverlay = styled(Dialog.Overlay)`
 
 export const DialogContent = styled(Dialog.Content)`
   width: 90vw;
-  max-width: 1068px;
+  max-width: 1366px;
 
   background-color: ${({ theme }) => theme.colors.white};
 
