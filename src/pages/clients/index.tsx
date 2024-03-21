@@ -26,7 +26,7 @@ export const Clients: React.FC = () => {
   )
 
   return (
-    <main>
+    <>
       <Header />
 
       <Container>
@@ -55,6 +55,6 @@ export const Clients: React.FC = () => {
           ))}
         </ClientsList>
       </Container>
-    </main>
+    </>
   )
 }

@@ -9,7 +9,7 @@ import { OrdersList, Wrapper } from './styles'
 
 export const Orders: React.FC = () => {
   return (
-    <main>
+    <>
       <Header />
 
       <Container>
@@ -42,6 +42,6 @@ export const Orders: React.FC = () => {
           </li>
         </OrdersList>
       </Container>
-    </main>
+    </>
   )
 }
