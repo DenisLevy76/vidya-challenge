@@ -9,9 +9,22 @@ import { Container } from '../../styles/container'
 import { ProductList, Wrapper } from './styles'
 import { RootState } from '../../states/store'
 import { ProductAbout } from '../../components/product-about-dialog'
+import { IProduct } from '../../@types/product'
+import { useState } from 'react'
 
 export const Products: React.FC = () => {
+  const [filter, setFilter] = useState<string>('')
   const products = useSelector((state: RootState) => state.products.products)
+  const filteredProducts = products.filter((product) =>
+    Object.keys(product).some(
+      (key) =>
+        product[key as keyof IProduct]
+          .toString()
+          .toLowerCase()
+          .indexOf(filter) !== -1
+    )
+  )
+
   return (
     <>
       <Header />
@@ -21,6 +34,7 @@ export const Products: React.FC = () => {
           <Wrapper>
             <Input
               placeholder='Pesquisar'
+              onChange={(event) => setFilter(event.target.value)}
               suffix={
                 <IconButton aria-label='Pesquisar'>
                   <SearchIcon />
@@ -30,7 +44,7 @@ export const Products: React.FC = () => {
             <CreateProductDialog />
           </Wrapper>
           <ProductList>
-            {products.map((product) => (
+            {filteredProducts.map((product) => (
               <li key={product.id}>
                 <ProductAbout product={product}>
                   <ProductCard
