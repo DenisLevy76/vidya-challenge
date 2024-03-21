@@ -17,8 +17,13 @@ export const Button = styled.button<{ size?: 'default' | 'small' }>`
 
   transition: all 0.2s ease-in-out;
 
-  &:hover {
+  &:not(:disabled):hover {
     filter: brightness(1.1);
     cursor: pointer;
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 `
