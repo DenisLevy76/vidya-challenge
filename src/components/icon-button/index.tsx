@@ -13,7 +13,7 @@ export const IconButton = styled.button`
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    scale: 1.1;
+    scale: 1.01;
   }
 
   &:active {
