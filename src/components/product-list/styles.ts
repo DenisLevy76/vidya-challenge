@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const ProductListWrapper = styled.div`
   display: flex;
   gap: 0.5rem;
-  max-width: 340px;
 
   border: 1px solid ${({ theme }) => theme.colors.textMuted};
   border-radius: 0.5rem;
@@ -13,6 +12,7 @@ export const ProductListWrapper = styled.div`
     height: 100px;
     object-fit: cover;
     border-radius: 0.5rem;
+    aspect-ratio: 1/1;
   }
 
   .product-info {
@@ -44,6 +44,14 @@ export const ProductListWrapper = styled.div`
       border-radius: 50%;
       width: 1.5rem;
       height: 1.5rem;
+    }
+
+    input {
+      width: auto;
+      max-width: 30px;
+      text-align: center;
+      padding: 0;
+      border: none;
     }
   }
 

@@ -4,7 +4,12 @@ import { IconButton } from '../icon-button'
 import { ProductListWrapper } from './styles'
 import { ProductListProps } from './types'
 
-export const ProductList: React.FC<ProductListProps> = ({ onValueChange }) => {
+export const ProductList: React.FC<ProductListProps> = ({
+  onValueChange,
+  id,
+  image,
+  name,
+}) => {
   const [count, setCount] = useState(0)
 
   const handleIncrement = () => {
@@ -21,13 +26,13 @@ export const ProductList: React.FC<ProductListProps> = ({ onValueChange }) => {
   return (
     <ProductListWrapper>
       <img
-        src='https://source.unsplash.com/random'
+        src={image}
         alt=''
       />
 
       <div className='product-info'>
-        <h3>Produto 1</h3>
-        <span>Cód. 1</span>
+        <h3>{name}</h3>
+        <span>Cód. {id}</span>
         <div className='counter'>
           <IconButton
             onClick={handleDecrement}
@@ -35,7 +40,12 @@ export const ProductList: React.FC<ProductListProps> = ({ onValueChange }) => {
           >
             -
           </IconButton>
-          <p>{count}</p>
+          <input
+            type='text'
+            readOnly
+            aria-label='Quantidade'
+            value={count}
+          />
           <IconButton onClick={handleIncrement}>+</IconButton>
         </div>
       </div>

@@ -18,7 +18,9 @@ import { Textarea } from '../Textarea'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { IProduct } from '../../@types/product'
+import { useDispatch } from 'react-redux'
+import { createProduct } from '../../states/productsSlice'
+import { v4 as uuid } from 'uuid'
 
 const CreateProductFormSchema = yup.object({
   name: yup.string().required('Este campo é obrigatório.'),
@@ -31,18 +33,29 @@ const CreateProductFormSchema = yup.object({
   image: yup.string().required('Este campo é obrigatório.'),
 })
 
+interface InputValues {
+  name: string
+  price: number
+  description: string
+  image: string
+}
+
 export const CreateProductDialog: React.FC = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm<IProduct>({
+  } = useForm<InputValues>({
     resolver: yupResolver(CreateProductFormSchema),
   })
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const dispatch = useDispatch()
 
-  const onSubmit = (data: IProduct) => {
-    console.log(data)
+  const onSubmit = (data: InputValues) => {
+    dispatch(createProduct({ ...data, id: uuid() }))
+    setIsOpen(false)
+    reset()
   }
 
   return (

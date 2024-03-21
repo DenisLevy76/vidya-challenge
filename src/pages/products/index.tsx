@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux'
 import { CreateProductDialog } from '../../components/create-product-dialog'
 import { Header } from '../../components/header'
 import { IconButton } from '../../components/icon-button'
@@ -6,8 +7,10 @@ import { Input } from '../../components/input'
 import { ProductCard } from '../../components/product-card'
 import { Container } from '../../styles/container'
 import { ProductList, Wrapper } from './styles'
+import { RootState } from '../../states/store'
 
 export const Products: React.FC = () => {
+  const products = useSelector((state: RootState) => state.products.products)
   return (
     <>
       <Header />
@@ -26,15 +29,15 @@ export const Products: React.FC = () => {
             <CreateProductDialog />
           </Wrapper>
           <ProductList>
-            <li>
-              <ProductCard />
-            </li>
-            <li>
-              <ProductCard />
-            </li>
-            <li>
-              <ProductCard />
-            </li>
+            {products.map((product) => (
+              <li>
+                <ProductCard
+                  image={product.image}
+                  name={product.name}
+                  price={product.price}
+                />
+              </li>
+            ))}
           </ProductList>
         </Container>
       </main>
