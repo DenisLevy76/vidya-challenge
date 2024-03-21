@@ -9,23 +9,91 @@ import {
 } from '../dialog'
 import { IconButton } from '../icon-button'
 import { XIcon } from '../icons/x-icon'
-import { DialogBody, DialogFooterContent } from './styles'
+import { DialogBody, DialogFooterContent, SelectWrapper } from './styles'
 import { Input } from '../input'
 import { SearchIcon } from '../icons/search'
 import { formatToCurrency } from '../../utils/convert-to-currency'
 import { ProductList } from '../product-list'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../states/store'
+import { useCallback, useState } from 'react'
+import { IProduct } from '../../@types/product'
+import { Cart, CreateOrderInputForm } from './types'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm } from 'react-hook-form'
+import * as yup from 'yup'
+import { createOrder } from '../../states/ordersSlice'
+
+const schema = yup.object({
+  client: yup.string().required('Este campo é obrigatório.'),
+})
 
 export const CreateOrderDialog: React.FC = () => {
-  const clients = useSelector((state: RootState) =>
-    state.clients.clients.map((client) => ({
-      name: client.name,
-      CNPJ: client.CNPJ,
-    }))
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CreateOrderInputForm>({
+    resolver: yupResolver(schema),
+  })
+  const clients = useSelector((state: RootState) => state.clients.clients)
+  const dispatch = useDispatch()
+
+  const [filter, setFilter] = useState<string>('')
+  const products = useSelector((state: RootState) => state.products.products)
+  const filteredProducts = products.filter((product) =>
+    Object.keys(product).some(
+      (key) =>
+        product[key as keyof IProduct]
+          .toString()
+          .toLowerCase()
+          .indexOf(filter) !== -1
+    )
   )
 
-  const products = useSelector((state: RootState) => state.products.products)
+  const onValueChange = useCallback(
+    (product: IProduct, quantity: number) =>
+      setCart((prev) => {
+        const item = prev.findIndex((item) => item.product.id === product.id)
+
+        if (item >= 0) {
+          prev[item].quantity = quantity
+        } else {
+          prev.push({
+            product,
+            quantity,
+          })
+        }
+
+        return [...prev]
+      }),
+    []
+  )
+
+  const [cart, setCart] = useState<Cart>([])
+  const finalCart = cart.filter((item) => item.quantity !== 0)
+
+  const totalPrice = finalCart.reduce((acc, curr) => {
+    return (acc += curr.product.price * curr.quantity)
+  }, 0)
+
+  const onSubmit = (data: CreateOrderInputForm) => {
+    const clientIndex = clients.findIndex(
+      (client) => client.CNPJ === data.client
+    )
+
+    if (clientIndex >= 0) {
+      dispatch(
+        createOrder({
+          client: clients[clientIndex],
+          cart: finalCart,
+          totalPrice,
+          nItems: cart.length,
+        })
+      )
+    }
+  }
+
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
@@ -43,26 +111,29 @@ export const CreateOrderDialog: React.FC = () => {
               </Dialog.Close>
             </DialogHeader>
             <DialogBody>
-              <form>
-                <select
-                  name='clientSelect'
-                  id='clientSelect'
-                >
-                  <option value=''>Selecionar cliente</option>
-                  {clients.map((client) => (
-                    <option
-                      value={client.CNPJ}
-                      key={client.CNPJ}
-                    >
-                      {client.name}
-                    </option>
-                  ))}
-                </select>
+              <form
+                id='create-order'
+                onSubmit={handleSubmit(onSubmit)}
+              >
+                <SelectWrapper>
+                  <select {...register('client')}>
+                    <option value=''>Selecionar cliente</option>
+                    {clients.map((client) => (
+                      <option
+                        value={client.CNPJ}
+                        key={client.CNPJ}
+                      >
+                        {client.name}
+                      </option>
+                    ))}
+                  </select>
+                  <span>{errors.client?.message}</span>
+                </SelectWrapper>
 
                 <strong>Produtos</strong>
-
                 <Input
                   placeholder='Pesquisar produtos'
+                  onChange={(event) => setFilter(event.target.value)}
                   suffix={
                     <IconButton aria-label='Pesquisar produtos'>
                       <SearchIcon />
@@ -72,12 +143,16 @@ export const CreateOrderDialog: React.FC = () => {
               </form>
 
               <ul>
-                {products.map((product) => (
-                  <li>
+                {filteredProducts.map((product) => (
+                  <li key={product.id}>
                     <ProductList
                       id={product.id}
                       image={product.image}
                       name={product.name}
+                      price={product.price}
+                      onValueChange={(quantity) =>
+                        onValueChange(product, quantity)
+                      }
                     />
                   </li>
                 ))}
@@ -86,10 +161,17 @@ export const CreateOrderDialog: React.FC = () => {
             <DialogFooter>
               <DialogFooterContent>
                 <p>
-                  Total: <strong>{formatToCurrency(49.99)}</strong>
+                  Total: <strong>{formatToCurrency(totalPrice)}</strong>
                 </p>
               </DialogFooterContent>
-              <Button size='small'>Salvar</Button>
+              <Button
+                type='submit'
+                form='create-order'
+                size='small'
+                disabled={totalPrice <= 0}
+              >
+                Salvar
+              </Button>
             </DialogFooter>
           </DialogContent>
         </DialogOverlay>

@@ -8,6 +8,7 @@ import { initializeProductState } from './states/productsSlice'
 
 export const App: React.FC = () => {
   const clients = useSelector((state: RootState) => state.clients.clients)
+  const orders = useSelector((state: RootState) => state.orders.orders)
   const products = useSelector((state: RootState) => state.products.products)
   const [loading, setLoading] = useState<boolean>(true)
   const dispatch = useDispatch()
@@ -17,6 +18,13 @@ export const App: React.FC = () => {
 
     const persistentClientState = localStorage.getItem('clients')
     const persistentProductState = localStorage.getItem('products')
+    const persistentOrdersState = localStorage.getItem('orders')
+
+    if (persistentOrdersState && persistentOrdersState?.length > 2) {
+      console.log(persistentOrdersState)
+      const data = JSON.parse(persistentOrdersState)
+      dispatch(initializeProductState(data))
+    }
 
     if (persistentProductState && persistentProductState?.length > 2) {
       console.log(persistentProductState)
@@ -37,7 +45,8 @@ export const App: React.FC = () => {
 
     localStorage.setItem('clients', JSON.stringify(clients))
     localStorage.setItem('products', JSON.stringify(products))
-  }, [clients, products, loading])
+    localStorage.setItem('orders', JSON.stringify(orders))
+  }, [clients, products, loading, orders])
 
   return <RouterProvider router={routes} />
 }

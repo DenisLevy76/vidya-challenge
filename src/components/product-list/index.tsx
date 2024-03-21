@@ -9,6 +9,7 @@ export const ProductList: React.FC<ProductListProps> = ({
   id,
   image,
   name,
+  price,
 }) => {
   const [count, setCount] = useState(0)
 
@@ -21,7 +22,8 @@ export const ProductList: React.FC<ProductListProps> = ({
 
   useEffect(() => {
     onValueChange && onValueChange(count)
-  }, [count, onValueChange])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [count])
 
   return (
     <ProductListWrapper>
@@ -50,7 +52,7 @@ export const ProductList: React.FC<ProductListProps> = ({
         </div>
       </div>
 
-      <strong className='price'>{formatToCurrency(49.99)}</strong>
+      <strong className='price'>{formatToCurrency(price)}</strong>
     </ProductListWrapper>
   )
 }

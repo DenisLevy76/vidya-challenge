@@ -13,10 +13,11 @@ export const OrderCardWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
 
   & .about {
-    & > h3 {
+    & > strong {
       color: ${({ theme }) => theme.colors.title};
       font-weight: bold;
       font-size: 0.75rem;
+      display: block;
     }
 
     & > span {

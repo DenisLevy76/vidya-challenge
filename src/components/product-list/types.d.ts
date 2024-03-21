@@ -3,4 +3,5 @@ export interface ProductListProps {
   name: string
   id: string
   image: string
+  price: number
 }

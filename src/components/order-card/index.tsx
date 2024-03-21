@@ -10,7 +10,7 @@ export const OrderCard: React.FC = () => {
         variant='secondary'
       />
       <p className='about'>
-        <h3>Império dos Sonhos</h3>
+        <strong>Império dos Sonhos</strong>
         <span>Qtd. produtos: 123</span>
       </p>
       <strong className='price'>{formatToCurrency(49.99)}</strong>
