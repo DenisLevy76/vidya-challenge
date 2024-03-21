@@ -24,8 +24,10 @@ export const DialogBody = styled.main`
     margin-top: 1.375rem;
     display: flex;
     flex-wrap: wrap;
-    grid-template-columns: repeat(1, 1fr);
     gap: 1.1875rem;
+
+    max-height: 80vh;
+    overflow: auto;
   }
 `
 

@@ -12,11 +12,11 @@ export const clientsSlice = createSlice({
     createClient: (state, action: PayloadAction<IClient>) => {
       state.clients.push(action.payload)
     },
-    initializeState: (state, action: PayloadAction<IClient[]>) => {
+    initializeClientState: (state, action: PayloadAction<IClient[]>) => {
       state.clients = action.payload
     },
   },
 })
 
-export const { createClient, initializeState } = clientsSlice.actions
-export const counterReducers = clientsSlice.reducer
+export const { createClient, initializeClientState } = clientsSlice.actions
+export const clientsReducers = clientsSlice.reducer

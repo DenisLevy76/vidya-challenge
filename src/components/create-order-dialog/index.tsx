@@ -24,6 +24,8 @@ export const CreateOrderDialog: React.FC = () => {
       CNPJ: client.CNPJ,
     }))
   )
+
+  const products = useSelector((state: RootState) => state.products.products)
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
@@ -70,9 +72,15 @@ export const CreateOrderDialog: React.FC = () => {
               </form>
 
               <ul>
-                <li>
-                  <ProductList />
-                </li>
+                {products.map((product) => (
+                  <li>
+                    <ProductList
+                      id={product.id}
+                      image={product.image}
+                      name={product.name}
+                    />
+                  </li>
+                ))}
               </ul>
             </DialogBody>
             <DialogFooter>

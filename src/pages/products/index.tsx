@@ -1,4 +1,5 @@
-import { CreateOrderDialog } from '../../components/create-order-dialog'
+import { useSelector } from 'react-redux'
+import { CreateProductDialog } from '../../components/create-product-dialog'
 import { Header } from '../../components/header'
 import { IconButton } from '../../components/icon-button'
 import { SearchIcon } from '../../components/icons/search'
@@ -6,8 +7,11 @@ import { Input } from '../../components/input'
 import { ProductCard } from '../../components/product-card'
 import { Container } from '../../styles/container'
 import { ProductList, Wrapper } from './styles'
+import { RootState } from '../../states/store'
+import { ProductAbout } from '../../components/product-about-dialog'
 
 export const Products: React.FC = () => {
+  const products = useSelector((state: RootState) => state.products.products)
   return (
     <>
       <Header />
@@ -23,18 +27,20 @@ export const Products: React.FC = () => {
                 </IconButton>
               }
             />
-            <CreateOrderDialog />
+            <CreateProductDialog />
           </Wrapper>
           <ProductList>
-            <li>
-              <ProductCard />
-            </li>
-            <li>
-              <ProductCard />
-            </li>
-            <li>
-              <ProductCard />
-            </li>
+            {products.map((product) => (
+              <li>
+                <ProductAbout product={product}>
+                  <ProductCard
+                    image={product.image}
+                    name={product.name}
+                    price={product.price}
+                  />
+                </ProductAbout>
+              </li>
+            ))}
           </ProductList>
         </Container>
       </main>
