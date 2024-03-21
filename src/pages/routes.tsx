@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { Header } from '../components/header'
 import { Orders } from './orders'
 import { Clients } from './clients'
+import { Products } from './products'
 
 export const routes = createBrowserRouter([
   {
@@ -27,6 +27,6 @@ export const routes = createBrowserRouter([
   },
   {
     path: '/products',
-    element: <Header />,
+    element: <Products />,
   },
 ])

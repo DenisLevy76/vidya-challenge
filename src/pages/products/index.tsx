@@ -3,18 +3,18 @@ import { Header } from '../../components/header'
 import { IconButton } from '../../components/icon-button'
 import { SearchIcon } from '../../components/icons/search'
 import { Input } from '../../components/input'
-import { OrderCard } from '../../components/order-card'
+import { ProductCard } from '../../components/product-card'
 import { Container } from '../../styles/container'
-import { OrdersList, Wrapper } from './styles'
+import { ProductList, Wrapper } from './styles'
 
-export const Orders: React.FC = () => {
+export const Products: React.FC = () => {
   return (
     <>
       <Header />
 
-      <Container>
-        <Wrapper>
-          <form action=''>
+      <main>
+        <Container>
+          <Wrapper>
             <Input
               placeholder='Pesquisar'
               suffix={
@@ -23,25 +23,21 @@ export const Orders: React.FC = () => {
                 </IconButton>
               }
             />
-          </form>
-          <CreateOrderDialog />
-        </Wrapper>
-
-        <OrdersList>
-          <li>
-            <OrderCard />
-          </li>
-          <li>
-            <OrderCard />
-          </li>
-          <li>
-            <OrderCard />
-          </li>
-          <li>
-            <OrderCard />
-          </li>
-        </OrdersList>
-      </Container>
+            <CreateOrderDialog />
+          </Wrapper>
+          <ProductList>
+            <li>
+              <ProductCard />
+            </li>
+            <li>
+              <ProductCard />
+            </li>
+            <li>
+              <ProductCard />
+            </li>
+          </ProductList>
+        </Container>
+      </main>
     </>
   )
 }
