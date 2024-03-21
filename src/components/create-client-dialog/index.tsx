@@ -18,6 +18,8 @@ import { IClient } from '../../@types/client'
 import { useDispatch } from 'react-redux'
 import { createClient } from '../../states/clientSlice'
 import { useState } from 'react'
+import { api } from '../../libs/axios'
+import { ViaCEPResponse } from './types'
 
 const schema = yup.object({
   name: yup.string().required('Este campo é obrigatório.'),
@@ -40,9 +42,21 @@ export const CreateClientDialog: React.FC = () => {
     handleSubmit,
     reset,
     formState: { errors },
+    setValue,
   } = useForm<IClient>({
     resolver: yupResolver(schema),
   })
+
+  const getAddress = async (CEP: string) => {
+    const { data } = await api.get<ViaCEPResponse>(
+      `https://viacep.com.br/ws/${CEP}/json/`
+    )
+
+    setValue('address', data.logradouro)
+    setValue('city', data.localidade)
+    setValue('neighborhood', data.bairro)
+    setValue('state', data.uf)
+  }
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -96,6 +110,7 @@ export const CreateClientDialog: React.FC = () => {
                 <Input
                   label='CEP'
                   {...register('CEP')}
+                  onBlur={(event) => getAddress(event.target.value)}
                   helperText={errors.CEP?.message}
                 />
                 <Input
