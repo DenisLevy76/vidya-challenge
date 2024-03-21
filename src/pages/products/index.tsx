@@ -1,4 +1,4 @@
-import { CreateOrderDialog } from '../../components/create-order-dialog'
+import { CreateProductDialog } from '../../components/create-product-dialog'
 import { Header } from '../../components/header'
 import { IconButton } from '../../components/icon-button'
 import { SearchIcon } from '../../components/icons/search'
@@ -23,7 +23,7 @@ export const Products: React.FC = () => {
                 </IconButton>
               }
             />
-            <CreateOrderDialog />
+            <CreateProductDialog />
           </Wrapper>
           <ProductList>
             <li>
