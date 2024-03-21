@@ -16,7 +16,7 @@ export const Input: React.FC<InputProps> = forwardRef<
       />
       {suffix}
     </InputWrapper>
-    {helperText && <p className='helper-text'>{helperText}</p>}
+    <p className='helper-text'>{helperText}</p>
   </InputLabel>
 ))
 

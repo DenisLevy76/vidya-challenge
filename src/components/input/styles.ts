@@ -14,7 +14,7 @@ export const InputLabel = styled.label`
   .helper-text {
     color: ${({ theme }) => theme.colors.red};
     font-size: ${pxToRem(12)};
-    height: ${pxToRem(24)};
+    min-height: ${pxToRem(24)};
   }
 `
 
