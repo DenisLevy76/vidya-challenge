@@ -8,6 +8,7 @@ import { ProductCard } from '../../components/product-card'
 import { Container } from '../../styles/container'
 import { ProductList, Wrapper } from './styles'
 import { RootState } from '../../states/store'
+import { ProductAbout } from '../../components/product-about-dialog'
 
 export const Products: React.FC = () => {
   const products = useSelector((state: RootState) => state.products.products)
@@ -31,11 +32,13 @@ export const Products: React.FC = () => {
           <ProductList>
             {products.map((product) => (
               <li>
-                <ProductCard
-                  image={product.image}
-                  name={product.name}
-                  price={product.price}
-                />
+                <ProductAbout product={product}>
+                  <ProductCard
+                    image={product.image}
+                    name={product.name}
+                    price={product.price}
+                  />
+                </ProductAbout>
               </li>
             ))}
           </ProductList>
