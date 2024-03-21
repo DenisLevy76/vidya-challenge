@@ -1,19 +1,24 @@
 import { formatToCurrency } from '../../utils/convert-to-currency'
 import { Photo } from '../photo'
 import { OrderCardWrapper } from './styles'
+import { OrderCardProps } from './types'
 
-export const OrderCard: React.FC = () => {
+export const OrderCard: React.FC<OrderCardProps> = ({
+  nQty,
+  name,
+  totalPrice,
+}) => {
   return (
     <OrderCardWrapper>
       <Photo
-        name='Império dos Sonhos'
+        name={name}
         variant='secondary'
       />
       <p className='about'>
-        <strong>Império dos Sonhos</strong>
-        <span>Qtd. produtos: 123</span>
+        <strong>{name}</strong>
+        <span>Qtd. produtos: {nQty}</span>
       </p>
-      <strong className='price'>{formatToCurrency(49.99)}</strong>
+      <strong className='price'>{formatToCurrency(totalPrice)}</strong>
     </OrderCardWrapper>
   )
 }

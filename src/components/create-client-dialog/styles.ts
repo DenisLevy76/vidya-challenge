@@ -18,6 +18,7 @@ export const CreateClientDialogBody = styled.main`
 
     @media (min-width: 900px) {
       grid-template-columns: repeat(3, 1fr);
+      overflow: hidden;
     }
   }
 `
