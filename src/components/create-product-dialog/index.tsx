@@ -51,7 +51,7 @@ export const CreateProductDialog: React.FC = () => {
       open={isOpen}
     >
       <Dialog.Trigger asChild>
-        <Button>+ Novo Cliente</Button>
+        <Button>+ Novo Produto</Button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <DialogOverlay>
