@@ -21,6 +21,7 @@ import * as yup from 'yup'
 import { useDispatch } from 'react-redux'
 import { createProduct } from '../../states/productsSlice'
 import { v4 as uuid } from 'uuid'
+import { ImageInput } from '../image-input'
 
 const CreateProductFormSchema = yup.object({
   name: yup.string().required('Este campo é obrigatório.'),
@@ -45,6 +46,7 @@ export const CreateProductDialog: React.FC = () => {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm<InputValues>({
     resolver: yupResolver(CreateProductFormSchema),
@@ -102,9 +104,8 @@ export const CreateProductDialog: React.FC = () => {
                   helperText={errors.description?.message}
                 />
 
-                <input
-                  type='text'
-                  {...register('image')}
+                <ImageInput
+                  onFileChange={(imgURL) => setValue('image', imgURL)}
                 />
               </form>
             </CreateProductDialogBody>

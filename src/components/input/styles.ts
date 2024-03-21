@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { pxToRem } from '../../utils/pxToRem'
 
 export const InputLabel = styled.label`
   display: flex;
@@ -12,6 +13,8 @@ export const InputLabel = styled.label`
 
   .helper-text {
     color: ${({ theme }) => theme.colors.red};
+    font-size: ${pxToRem(12)};
+    height: ${pxToRem(24)};
   }
 `
 

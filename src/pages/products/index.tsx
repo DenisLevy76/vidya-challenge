@@ -31,7 +31,7 @@ export const Products: React.FC = () => {
           </Wrapper>
           <ProductList>
             {products.map((product) => (
-              <li>
+              <li key={product.id}>
                 <ProductAbout product={product}>
                   <ProductCard
                     image={product.image}
