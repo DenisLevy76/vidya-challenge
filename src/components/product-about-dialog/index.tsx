@@ -19,7 +19,9 @@ export const ProductAbout: React.FC<{
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <IconButton>{children}</IconButton>
+        <IconButton data-testid='product-about-dialog-trigger'>
+          {children}
+        </IconButton>
       </Dialog.Trigger>
       <Dialog.Portal>
         <DialogOverlay>
@@ -35,12 +37,15 @@ export const ProductAbout: React.FC<{
             <ProductAboutArticle>
               <img
                 src={product.image}
+                data-testid='product-image'
                 alt=''
               />
 
               <div className='article-body'>
                 <h2>{product.name}</h2>
-                <strong>{formatToCurrency(product.price)}</strong>
+                <strong data-testid='product-price'>
+                  {formatToCurrency(product.price)}
+                </strong>
                 <p>{product.description}</p>
               </div>
             </ProductAboutArticle>
