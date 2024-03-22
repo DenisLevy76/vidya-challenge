@@ -10,20 +10,11 @@ import { ProductList, Wrapper } from './styles'
 import { RootState } from '../../states/store'
 import { ProductAbout } from '../../components/product-about-dialog'
 import { IProduct } from '../../@types/product'
-import { useState } from 'react'
+import { useSearch } from '../../hooks/useSearch'
 
 export const Products: React.FC = () => {
-  const [filter, setFilter] = useState<string>('')
   const products = useSelector((state: RootState) => state.products.products)
-  const filteredProducts = products.filter((product) =>
-    Object.keys(product).some(
-      (key) =>
-        product[key as keyof IProduct]
-          .toString()
-          .toLowerCase()
-          .indexOf(filter) !== -1
-    )
-  )
+  const { filteredList, setFilter } = useSearch<IProduct>(products)
 
   return (
     <>
@@ -44,7 +35,7 @@ export const Products: React.FC = () => {
             <CreateProductDialog />
           </Wrapper>
           <ProductList>
-            {filteredProducts.map((product) => (
+            {filteredList.map((product) => (
               <li key={product.id}>
                 <ProductAbout product={product}>
                   <ProductCard

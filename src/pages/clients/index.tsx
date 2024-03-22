@@ -9,21 +9,12 @@ import { ClientsList, Wrapper } from './styles'
 
 import { useSelector } from 'react-redux'
 import { RootState } from '../../states/store'
-import { useState } from 'react'
 import { IClient } from '../../@types/client'
+import { useSearch } from '../../hooks/useSearch'
 
 export const Clients: React.FC = () => {
-  const [filter, setFilter] = useState<string>('')
   const clients = useSelector((state: RootState) => state.clients.clients)
-  const filteredClients = clients.filter((client) =>
-    Object.keys(client).some(
-      (key) =>
-        client[key as keyof IClient]
-          .toString()
-          .toLowerCase()
-          .indexOf(filter) !== -1
-    )
-  )
+  const { filteredList, setFilter } = useSearch<IClient>(clients)
 
   return (
     <>
@@ -34,7 +25,6 @@ export const Clients: React.FC = () => {
           <Input
             placeholder='Pesquisar'
             onChange={(event) => setFilter(event.target.value)}
-            value={filter}
             suffix={
               <IconButton aria-label='Pesquisar'>
                 <SearchIcon />
@@ -45,7 +35,7 @@ export const Clients: React.FC = () => {
         </Wrapper>
 
         <ClientsList>
-          {filteredClients?.map((client) => (
+          {filteredList?.map((client) => (
             <li key={client.CNPJ}>
               <ClientCard
                 name={client.name}

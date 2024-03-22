@@ -24,6 +24,7 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { createOrder } from '../../states/ordersSlice'
 import { Select } from '../select'
+import { useSearch } from '../../hooks/useSearch'
 
 const schema = yup.object({
   client: yup.string().required('Este campo é obrigatório.'),
@@ -33,6 +34,7 @@ export const CreateOrderDialog: React.FC = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<CreateOrderInputForm>({
     resolver: yupResolver(schema),
@@ -40,17 +42,8 @@ export const CreateOrderDialog: React.FC = () => {
   const clients = useSelector((state: RootState) => state.clients.clients)
   const dispatch = useDispatch()
 
-  const [filter, setFilter] = useState<string>('')
   const products = useSelector((state: RootState) => state.products.products)
-  const filteredProducts = products.filter((product) =>
-    Object.keys(product).some(
-      (key) =>
-        product[key as keyof IProduct]
-          .toString()
-          .toLowerCase()
-          .indexOf(filter) !== -1
-    )
-  )
+  const { filteredList, setFilter } = useSearch<IProduct>(products)
 
   const onValueChange = useCallback(
     (product: IProduct, quantity: number) =>
@@ -74,6 +67,8 @@ export const CreateOrderDialog: React.FC = () => {
   const [cart, setCart] = useState<Cart>([])
   const finalCart = cart.filter((item) => item.quantity !== 0)
 
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+
   const totalPrice = finalCart.reduce((acc, curr) => {
     return (acc += curr.product.price * curr.quantity)
   }, 0)
@@ -92,11 +87,18 @@ export const CreateOrderDialog: React.FC = () => {
           nItems: cart.length,
         })
       )
+
+      setIsOpen(false)
+      setCart([])
+      reset()
     }
   }
 
   return (
-    <Dialog.Root>
+    <Dialog.Root
+      onOpenChange={setIsOpen}
+      open={isOpen}
+    >
       <Dialog.Trigger asChild>
         <Button>+ Novo Pedido</Button>
       </Dialog.Trigger>
@@ -118,7 +120,7 @@ export const CreateOrderDialog: React.FC = () => {
               >
                 <Select
                   {...register('client')}
-                  label='Selecionar cliente'
+                  placeholder='Selecionar cliente'
                 >
                   {clients.map((client) => (
                     <option
@@ -144,7 +146,7 @@ export const CreateOrderDialog: React.FC = () => {
               </form>
 
               <ul>
-                {filteredProducts.map((product) => (
+                {filteredList.map((product) => (
                   <li key={product.id}>
                     <ProductList
                       id={product.id}

@@ -131,7 +131,7 @@ export const CreateClientDialog: React.FC = () => {
                 />
                 <Select
                   {...register('state')}
-                  label='Selecionar cliente'
+                  label='Estado'
                   placeholder='Selecione o estado'
                 >
                   {states.map((state) => (

@@ -8,9 +8,23 @@ import { OrderCard } from '../../components/order-card'
 import { Container } from '../../styles/container'
 import { OrdersList, Wrapper } from './styles'
 import { RootState } from '../../states/store'
+import { useState } from 'react'
+import { IClient } from '../../@types/client'
 
 export const Orders: React.FC = () => {
   const orders = useSelector((state: RootState) => state.orders.orders)
+
+  const [filter, setFilter] = useState<string>('')
+  const filteredProducts = orders.filter((order) =>
+    Object.keys(order.client).some(
+      (key) =>
+        order.client[key as keyof IClient]
+          .toString()
+          .toLowerCase()
+          .indexOf(filter.toLocaleLowerCase().trim()) !== -1
+    )
+  )
+
   return (
     <>
       <Header />
@@ -20,6 +34,7 @@ export const Orders: React.FC = () => {
           <form action=''>
             <Input
               placeholder='Pesquisar'
+              onChange={(event) => setFilter(event.target.value)}
               suffix={
                 <IconButton aria-label='Pesquisar'>
                   <SearchIcon />
@@ -31,7 +46,7 @@ export const Orders: React.FC = () => {
         </Wrapper>
 
         <OrdersList>
-          {orders.map((order) => (
+          {filteredProducts.map((order) => (
             <li>
               <OrderCard
                 nQty={order.nItems}
