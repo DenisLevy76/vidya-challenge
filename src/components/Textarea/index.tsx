@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
-import { TextareaLabel, TextareaWrapper } from './styles'
 import { TextareaProps } from './types'
+import { TextareaLabel, TextareaWrapper } from './styles'
 
 export const Textarea: React.FC<TextareaProps> = forwardRef<
   HTMLTextAreaElement,

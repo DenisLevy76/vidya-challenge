@@ -9,7 +9,7 @@ import {
 } from '../dialog'
 import { IconButton } from '../icon-button'
 import { XIcon } from '../icons/x-icon'
-import { DialogBody, DialogFooterContent, SelectWrapper } from './styles'
+import { DialogBody, DialogFooterContent } from './styles'
 import { Input } from '../input'
 import { SearchIcon } from '../icons/search'
 import { formatToCurrency } from '../../utils/convert-to-currency'
@@ -23,6 +23,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { createOrder } from '../../states/ordersSlice'
+import { Select } from '../select'
 
 const schema = yup.object({
   client: yup.string().required('Este campo é obrigatório.'),
@@ -115,20 +116,20 @@ export const CreateOrderDialog: React.FC = () => {
                 id='create-order'
                 onSubmit={handleSubmit(onSubmit)}
               >
-                <SelectWrapper>
-                  <select {...register('client')}>
-                    <option value=''>Selecionar cliente</option>
-                    {clients.map((client) => (
-                      <option
-                        value={client.CNPJ}
-                        key={client.CNPJ}
-                      >
-                        {client.name}
-                      </option>
-                    ))}
-                  </select>
-                  <span>{errors.client?.message}</span>
-                </SelectWrapper>
+                <Select
+                  {...register('client')}
+                  label='Selecionar cliente'
+                >
+                  {clients.map((client) => (
+                    <option
+                      value={client.CNPJ}
+                      key={client.CNPJ}
+                    >
+                      {client.name}
+                    </option>
+                  ))}
+                </Select>
+                <span>{errors.client?.message}</span>
 
                 <strong>Produtos</strong>
                 <Input

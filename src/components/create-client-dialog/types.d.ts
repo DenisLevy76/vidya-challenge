@@ -10,3 +10,18 @@ export interface ViaCEPResponse {
   ddd: string
   siafi: string
 }
+
+export type States = State[]
+
+export interface State {
+  id: number
+  sigla: string
+  nome: string
+  regiao: Regiao
+}
+
+export interface Regiao {
+  id: number
+  sigla: string
+  nome: string
+}
