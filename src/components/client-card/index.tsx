@@ -11,10 +11,10 @@ export const ClientCard: React.FC<ClientCardProps> = ({ CNPJ, name }) => {
           name={name}
           variant='primary'
         />
-        <p className='about'>
+        <span className='about'>
           <h3>{name}</h3>
           <span>{CNPJ}</span>
-        </p>
+        </span>
       </ClientsCardWrapper>
     </ClientAboutDialog>
   )
