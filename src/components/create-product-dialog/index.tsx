@@ -66,7 +66,9 @@ export const CreateProductDialog: React.FC = () => {
       open={isOpen}
     >
       <Dialog.Trigger asChild>
-        <Button>+ Novo Produto</Button>
+        <Button data-testid='create-product-dialog-trigger'>
+          + Novo Produto
+        </Button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <DialogOverlay>
