@@ -90,7 +90,9 @@ export const CreateClientDialog: React.FC = () => {
       open={isOpen}
     >
       <Dialog.Trigger asChild>
-        <Button>+ Novo Cliente</Button>
+        <Button data-testid='create-client-dialog-trigger'>
+          + Novo Cliente
+        </Button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <DialogOverlay>
