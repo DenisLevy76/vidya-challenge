@@ -128,17 +128,20 @@ export const CreateClientDialog: React.FC = () => {
                 <Input
                   label='CEP'
                   {...register('CEP')}
+                  data-testid='cep-input'
                   onBlur={(event) => getAddress(event.target.value)}
                   helperText={errors.CEP?.message}
                 />
                 <Select
                   {...register('state')}
                   label='Estado'
+                  data-testid='select-state'
                   placeholder='Selecione o estado'
                 >
                   {states.map((state) => (
                     <option
                       value={state.sigla}
+                      data-testid={`option-state`}
                       key={state.sigla}
                     >
                       {state.nome}
