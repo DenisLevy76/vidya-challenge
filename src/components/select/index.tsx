@@ -9,20 +9,20 @@ export interface SelectProps extends ComponentProps<'select'> {
 }
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
-  (props, ref) => {
+  ({ label, placeholder, children, helperText, ...otherProps }, ref) => {
     return (
       <SelectWrapper>
         <label>
-          <span>{props.label}</span>
+          <span data-testid='select-label'>{label}</span>
           <select
-            {...props}
+            {...otherProps}
             ref={ref}
           >
-            {props.placeholder && <option value=''>{props.placeholder}</option>}
-            {props.children}
+            {placeholder && <option value=''>{placeholder}</option>}
+            {children}
           </select>
         </label>
-        <span>{props.helperText}</span>
+        <span data-testid='select-helper-text'>{helperText}</span>
       </SelectWrapper>
     )
   }

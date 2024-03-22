@@ -100,7 +100,7 @@ export const CreateOrderDialog: React.FC = () => {
       open={isOpen}
     >
       <Dialog.Trigger asChild>
-        <Button>+ Novo Pedido</Button>
+        <Button data-testid='create-order-dialog-trigger'>+ Novo Pedido</Button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <DialogOverlay>
