@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const OrderCardWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   gap: 1rem;
 
   padding: 1rem;
@@ -30,5 +30,6 @@ export const OrderCardWrapper = styled.div`
     color: ${({ theme }) => theme.colors.title};
     font-weight: bold;
     font-size: 0.875rem;
+    margin-left: auto;
   }
 `

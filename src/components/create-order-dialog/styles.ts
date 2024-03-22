@@ -6,25 +6,28 @@ export const DialogBody = styled.main`
   form {
     display: flex;
     flex-direction: column;
-    align-items: start;
-    gap: 1.375rem;
+    gap: 0.375rem;
+
+    max-width: max(20vw, 300px);
+    width: 100%;
 
     strong {
       font-weight: 900;
       font-size: 0.875rem;
+    }
+
+    @media (min-width: 870px) {
+      gap: 1.375rem;
     }
   }
 
   ul {
     margin-top: 1.375rem;
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.1875rem;
 
-    max-height: 80vh;
-    overflow: auto;
-
-    max-height: 50vh;
+    max-height: 40vh;
     overflow: auto;
 
     @media (min-width: 870px) {
