@@ -2,6 +2,13 @@ import styled from 'styled-components'
 
 export const HeaderWrapper = styled.header`
   width: 100%;
+  position: sticky;
+  left: 0;
+  top: 0;
+  right: 0;
+  background-color: ${({ theme }) => theme.colors.background};
+  padding: 0.5rem;
+  z-index: 2;
 
   ul {
     display: flex;
