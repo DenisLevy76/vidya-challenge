@@ -5,7 +5,7 @@ import { renderProvider } from '../../utils/renderProviders'
 import { describe, expect, it } from 'vitest'
 import { formatToCurrency } from '../../utils/convert-to-currency'
 
-describe('<Button />', () => {
+describe('<ProductCard />', () => {
   it('Should be render in the document', () => {
     const { getByText } = renderProvider(
       <ProductCard
