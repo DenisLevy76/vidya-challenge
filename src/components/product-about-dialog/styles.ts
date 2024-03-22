@@ -16,7 +16,7 @@ export const ProductAboutArticle = styled.article`
   img {
     aspect-ratio: 313/203;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: ${pxToRem(7)};
   }
 

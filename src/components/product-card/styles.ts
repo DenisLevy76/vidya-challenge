@@ -10,7 +10,7 @@ export const ProductCardWrapper = styled.article`
   img {
     width: 100%;
     aspect-ratio: 125/81;
-    object-fit: cover;
+    object-fit: contain;
   }
 
   .about {
