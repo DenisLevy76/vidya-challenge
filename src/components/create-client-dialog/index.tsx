@@ -17,7 +17,10 @@ import { useForm } from 'react-hook-form'
 import { IClient } from '../../@types/client'
 import { useDispatch } from 'react-redux'
 import { createClient } from '../../states/clientSlice'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { api } from '../../libs/axios'
+import { States, ViaCEPResponse } from './types'
+import { Select } from '../select'
 
 const schema = yup.object({
   name: yup.string().required('Este campo é obrigatório.'),
@@ -40,9 +43,31 @@ export const CreateClientDialog: React.FC = () => {
     handleSubmit,
     reset,
     formState: { errors },
+    setValue,
   } = useForm<IClient>({
     resolver: yupResolver(schema),
   })
+
+  const [states, setStates] = useState<States>([])
+
+  const getAddress = async (CEP: string) => {
+    const { data } = await api.get<ViaCEPResponse>(
+      `https://viacep.com.br/ws/${CEP}/json/`
+    )
+
+    setValue('address', data.logradouro)
+    setValue('city', data.localidade)
+    setValue('neighborhood', data.bairro)
+    setValue('state', data.uf)
+  }
+
+  const getStates = async () => {
+    const { data } = await api.get<States>(
+      `https://servicodados.ibge.gov.br/api/v1/localidades/estados`
+    )
+
+    setStates(data)
+  }
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -53,6 +78,10 @@ export const CreateClientDialog: React.FC = () => {
     setIsOpen(false)
     reset()
   }
+
+  useEffect(() => {
+    getStates()
+  }, [])
 
   return (
     <Dialog.Root
@@ -96,13 +125,24 @@ export const CreateClientDialog: React.FC = () => {
                 <Input
                   label='CEP'
                   {...register('CEP')}
+                  onBlur={(event) => getAddress(event.target.value)}
                   helperText={errors.CEP?.message}
                 />
-                <Input
-                  label='Estado'
+                <Select
                   {...register('state')}
-                  helperText={errors.state?.message}
-                />
+                  label='Selecionar cliente'
+                  placeholder='Selecione o estado'
+                >
+                  {states.map((state) => (
+                    <option
+                      value={state.sigla}
+                      key={state.sigla}
+                    >
+                      {state.nome}
+                    </option>
+                  ))}
+                </Select>
+
                 <Input
                   label='Cidade'
                   {...register('city')}

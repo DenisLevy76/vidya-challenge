@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { pxToRem } from '../../utils/pxToRem'
 
 export const DialogBody = styled.main`
   padding: 1.125rem 1.375rem;
@@ -9,11 +8,6 @@ export const DialogBody = styled.main`
     flex-direction: column;
     align-items: start;
     gap: 1.375rem;
-
-    select {
-      padding: 0.875rem 1rem;
-      border-radius: 0.5rem;
-    }
 
     strong {
       font-weight: 900;
@@ -59,16 +53,5 @@ export const DialogFooterContent = styled.div`
       color: ${({ theme }) => theme.colors.title};
       margin-left: 0.4rem;
     }
-  }
-`
-
-export const SelectWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-
-  span {
-    font-size: ${pxToRem(12)};
-    color: ${({ theme }) => theme.colors.red};
   }
 `
