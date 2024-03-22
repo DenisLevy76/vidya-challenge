@@ -7,7 +7,7 @@ import { fireEvent } from '@testing-library/react'
 
 describe('<ClientAboutDialog />', () => {
   it('Should be render in the document', () => {
-    const { getByText, debug } = renderProvider(
+    const { getByText } = renderProvider(
       <ClientAboutDialog
         CNPJ='12.345.678/9012-34'
         children={'abrir'}
@@ -16,7 +16,6 @@ describe('<ClientAboutDialog />', () => {
 
     fireEvent.click(getByText('abrir'))
 
-    debug()
     expect(getByText('Apple Inc.')).toBeInTheDocument()
     expect(getByText('12.345.678/9012-34')).toBeInTheDocument()
     expect(getByText('(12) 3456-7890')).toBeInTheDocument()
