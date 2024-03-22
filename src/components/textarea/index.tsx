@@ -7,14 +7,26 @@ export const Textarea: React.FC<TextareaProps> = forwardRef<
   TextareaProps
 >(({ helperText, label, ...otherProps }, ref) => (
   <TextareaLabel>
-    <p className='label'>{label}</p>
+    <p
+      className='label'
+      data-testid='textarea-label'
+    >
+      {label}
+    </p>
     <TextareaWrapper>
       <textarea
         ref={ref}
         {...otherProps}
       />
     </TextareaWrapper>
-    {helperText && <p className='helper-text'>{helperText}</p>}
+    {helperText && (
+      <p
+        className='helper-text'
+        data-testid='textarea-helper-text'
+      >
+        {helperText}
+      </p>
+    )}
   </TextareaLabel>
 ))
 
