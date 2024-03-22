@@ -13,7 +13,7 @@ import { XIcon } from '../icons/x-icon'
 import { useState } from 'react'
 import { CreateProductDialogBody } from './styles'
 import { Input } from '../input'
-import { Textarea } from '../Textarea'
+import { Textarea } from '../textarea'
 
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
