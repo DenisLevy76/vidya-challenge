@@ -23,10 +23,7 @@ describe('<Header />', () => {
   })
 
   it('Should the active link must be in the primary color', () => {
-    const { container, debug } = renderProvider(
-      <RouterProvider router={route} />
-    )
-    debug()
+    const { container } = renderProvider(<RouterProvider router={route} />)
 
     expect(
       container.querySelector('header > nav > ul > li a.active')

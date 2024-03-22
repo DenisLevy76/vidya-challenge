@@ -20,14 +20,13 @@ describe('<ProductCard />', () => {
 
   it('Should format the price to BRL', () => {
     const price = 3.5
-    const { container, debug } = renderProvider(
+    const { container } = renderProvider(
       <ProductCard
         image=''
         name='Lapis'
         price={price}
       />
     )
-    debug()
     expect(container.querySelector('.about > strong')?.textContent).toBe(
       formatToCurrency(price)
     )
