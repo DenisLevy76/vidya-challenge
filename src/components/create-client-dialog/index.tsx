@@ -33,6 +33,7 @@ const schema = yup.object({
   address: yup.string().required('Este campo é obrigatório.'),
   number: yup
     .number()
+    .typeError('Digite um número válido.')
     .positive('Apenas números maiores que 0.')
     .required('Este campo é obrigatório.'),
 })
