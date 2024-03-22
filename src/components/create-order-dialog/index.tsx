@@ -84,7 +84,9 @@ export const CreateOrderDialog: React.FC = () => {
           client: clients[clientIndex],
           cart: finalCart,
           totalPrice,
-          nItems: cart.length,
+          nItems: finalCart.reduce((acc, curr) => {
+            return (acc += curr.quantity)
+          }, 0),
         })
       )
 
@@ -121,6 +123,7 @@ export const CreateOrderDialog: React.FC = () => {
                 <Select
                   {...register('client')}
                   placeholder='Selecionar cliente'
+                  helperText={errors.client?.message}
                 >
                   {clients.map((client) => (
                     <option
@@ -131,7 +134,6 @@ export const CreateOrderDialog: React.FC = () => {
                     </option>
                   ))}
                 </Select>
-                <span>{errors.client?.message}</span>
 
                 <strong>Produtos</strong>
                 <Input
