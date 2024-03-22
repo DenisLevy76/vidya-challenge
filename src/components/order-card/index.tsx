@@ -18,7 +18,12 @@ export const OrderCard: React.FC<OrderCardProps> = ({
         <strong>{name}</strong>
         <span>Qtd. produtos: {nQty}</span>
       </p>
-      <strong className='price'>{formatToCurrency(totalPrice)}</strong>
+      <strong
+        className='price'
+        data-testid='price'
+      >
+        {formatToCurrency(totalPrice)}
+      </strong>
     </OrderCardWrapper>
   )
 }
