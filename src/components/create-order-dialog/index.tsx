@@ -88,6 +88,7 @@ export const CreateOrderDialog: React.FC = () => {
           nItems: finalCart.reduce((acc, curr) => {
             return (acc += curr.quantity)
           }, 0),
+          createdAt: new Date(),
         })
       )
 

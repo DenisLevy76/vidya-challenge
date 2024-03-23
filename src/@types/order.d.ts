@@ -6,4 +6,5 @@ export interface IOrder {
   cart: Cart
   totalPrice: number
   nItems: number
+  createdAt: Date
 }
