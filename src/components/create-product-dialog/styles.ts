@@ -8,6 +8,13 @@ export const CreateProductDialogBody = styled.main`
   display: flex;
   flex-direction: column;
 
+  max-height: 40vh;
+  overflow: auto;
+
+  @media (min-width: 600px) {
+    max-height: 70vh;
+  }
+
   fieldset {
     display: flex;
     gap: ${pxToRem(32)};
