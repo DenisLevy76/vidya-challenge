@@ -22,7 +22,7 @@ export const ClientAboutDialog: React.FC<{
   return (
     <Dialog.Root>
       <Dialog.DialogTrigger asChild>
-        <IconButton>{children}</IconButton>
+        <IconButton full>{children}</IconButton>
       </Dialog.DialogTrigger>
       <Dialog.Portal>
         <DialogOverlay>

@@ -1,14 +1,18 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-export const IconButton = styled.button`
+export const FullSize = css`
+  width: 100%;
+`
+
+export const IconButton = styled.button<{ full?: boolean }>`
   border: none;
   background-color: transparent;
-
-  width: 100%;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  ${({ full }) => full && FullSize}
 
   cursor: pointer;
 
