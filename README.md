@@ -15,6 +15,11 @@
   <img width="24px" alt="Axios" title="Axios" src="https://user-images.githubusercontent.com/43313420/105893220-1bae8780-6013-11eb-87be-eeac845ecc6f.png">
 </p>
 
+---
+
+https://github.com/DenisLevy76/vidya-challenge/assets/62116847/a676632a-aeea-40ca-b5ce-6a70997e6aac
+
+
 # Teste Técnico para desenvolvimento WEB
 
 Este teste técnico foi elaborado pela empresa [Vidya](https://vidyacode.com.br/). O desafio consiste na criação de uma aplicação utilizando React e outras bibliotecas específicas para o gerenciamento de clientes, produtos e pedidos, com armazenamento local utilizando localStorage.
