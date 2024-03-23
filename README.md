@@ -6,6 +6,7 @@
   <img width="40px" alt="Typescript" title="Typescript" src="https://user-images.githubusercontent.com/25181517/183890598-19a0ac2d-e88a-4005-a8df-1ee36782fde1.png">
   <img width="40px" alt="React" title="React" src="https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png">
   <img width="40px" alt="Vite" title="Vite" src="https://github.com/marwin1991/profile-technology-icons/assets/62091613/b40892ef-efb8-4b0e-a6b5-d1cfc2f3fc35">
+  <img width="40px" alt="React Hook Form" title="React Hook Form" src="https://react-hook-form.com/images/logo/react-hook-form-logo-only.svg">
   <img width="40px" alt="Redux toolkit" title="Redux toolkit" src="https://user-images.githubusercontent.com/25181517/187896150-cc1dcb12-d490-445c-8e4d-1275cd2388d6.png">
   <img width="40px" alt="Vitest" title="Vitest" src="https://vitest.dev/logo.svg">
   <img width="40px" alt="Jest" title="Jest" src="https://user-images.githubusercontent.com/25181517/187955005-f4ca6f1a-e727-497b-b81b-93fb9726268e.png">
