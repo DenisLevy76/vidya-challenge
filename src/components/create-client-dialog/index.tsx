@@ -21,6 +21,7 @@ import { useEffect, useState } from 'react'
 import { api } from '../../libs/axios'
 import { States, ViaCEPResponse } from './types'
 import { Select } from '../select'
+import { PlusIcon } from '../icons/plus-icon'
 
 const schema = yup.object({
   name: yup.string().required('Este campo é obrigatório.'),
@@ -91,7 +92,7 @@ export const CreateClientDialog: React.FC = () => {
     >
       <Dialog.Trigger asChild>
         <Button data-testid='create-client-dialog-trigger'>
-          + Novo Cliente
+          <PlusIcon /> Novo Cliente
         </Button>
       </Dialog.Trigger>
       <Dialog.Portal>

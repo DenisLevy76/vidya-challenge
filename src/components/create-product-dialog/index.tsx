@@ -22,6 +22,7 @@ import { useDispatch } from 'react-redux'
 import { createProduct } from '../../states/productsSlice'
 import { v4 as uuid } from 'uuid'
 import { ImageInput } from '../image-input'
+import { PlusIcon } from '../icons/plus-icon'
 
 const CreateProductFormSchema = yup.object({
   name: yup.string().required('Este campo é obrigatório.'),
@@ -67,7 +68,8 @@ export const CreateProductDialog: React.FC = () => {
     >
       <Dialog.Trigger asChild>
         <Button data-testid='create-product-dialog-trigger'>
-          + Novo Produto
+          <PlusIcon />
+          Novo Produto
         </Button>
       </Dialog.Trigger>
       <Dialog.Portal>

@@ -25,6 +25,7 @@ import * as yup from 'yup'
 import { createOrder } from '../../states/ordersSlice'
 import { Select } from '../select'
 import { useSearch } from '../../hooks/useSearch'
+import { PlusIcon } from '../icons/plus-icon'
 
 const schema = yup.object({
   client: yup.string().required('Este campo é obrigatório.'),
@@ -102,7 +103,9 @@ export const CreateOrderDialog: React.FC = () => {
       open={isOpen}
     >
       <Dialog.Trigger asChild>
-        <Button data-testid='create-order-dialog-trigger'>+ Novo Pedido</Button>
+        <Button data-testid='create-order-dialog-trigger'>
+          <PlusIcon /> Novo Pedido
+        </Button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <DialogOverlay>
