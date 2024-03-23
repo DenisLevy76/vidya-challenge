@@ -10,8 +10,9 @@ export const ProductList: React.FC<ProductListProps> = ({
   image,
   name,
   price,
+  quantity,
 }) => {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState<number>(quantity || 0)
 
   const handleIncrement = () => {
     setCount((prev) => prev + 1)
