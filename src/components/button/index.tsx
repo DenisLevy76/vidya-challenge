@@ -1,10 +1,11 @@
 import styled from 'styled-components'
+import { pxToRem } from '../../utils/pxToRem'
 
 export const Button = styled.button<{ size?: 'default' | 'small' }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.25rem;
+  gap: ${pxToRem(11)};
 
   background-color: ${({ theme }) => theme.colors.primary};
   padding: ${({ size = 'default' }) =>
