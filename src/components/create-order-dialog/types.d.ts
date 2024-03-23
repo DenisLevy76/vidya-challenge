@@ -1,3 +1,5 @@
+import { IProduct } from '../../@types/product'
+
 export interface CreateOrderInputForm {
   client: string
 }
