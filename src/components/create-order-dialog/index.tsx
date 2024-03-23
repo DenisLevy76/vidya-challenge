@@ -159,6 +159,11 @@ export const CreateOrderDialog: React.FC = () => {
                       image={product.image}
                       name={product.name}
                       price={product.price}
+                      quantity={
+                        cart.filter(
+                          (order) => order.product.id === product.id
+                        )[0]?.quantity
+                      }
                       onValueChange={(quantity) =>
                         onValueChange(product, quantity)
                       }
