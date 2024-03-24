@@ -22,12 +22,23 @@ import { api } from '../../libs/axios'
 import { States, ViaCEPResponse } from './types'
 import { Select } from '../select'
 import { PlusIcon } from '../icons/plus-icon'
+import { CNPJValidation } from '../../utils/cnpj-validation'
 
 const schema = yup.object({
   name: yup.string().required('Este campo é obrigatório.'),
-  CNPJ: yup.string().required('Este campo é obrigatório.'),
+  CNPJ: yup
+    .string()
+    .required('Este campo é obrigatório.')
+    .min(14)
+    .test({
+      test: (value) => CNPJValidation(value),
+      message: 'CNPJ inválido',
+    }),
   phone: yup.string().required('Este campo é obrigatório.'),
-  CEP: yup.string().required('Este campo é obrigatório.'),
+  CEP: yup
+    .string()
+    .required('Este campo é obrigatório.')
+    .matches(/^\d{8}$/, 'CEP inválido'),
   state: yup.string().required('Este campo é obrigatório.'),
   city: yup.string().required('Este campo é obrigatório.'),
   neighborhood: yup.string().required('Este campo é obrigatório.'),
